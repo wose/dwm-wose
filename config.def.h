@@ -28,12 +28,14 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"alacritty", "-t", "spterm", "-d", "120 34", NULL };
-const char *spcmd2[] = {"alacritty", "-t", "spfm", "-d", "144 41", "-e", "ranger", NULL };
+const char *spcmd1[] = {"alacritty", "-t", "spterm", "-d", "120", "40", NULL };
+const char *spcmd2[] = {"alacritty", "-t", "spfm", "-d", "120", "40", "-e", "ranger", NULL };
+const char *spcmdcalc[] = {"alacritty", "-t", "spcalc", "-d", "120", "40", "-e", "insect", NULL};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
-	{"spranger",    spcmd2},
+	{"spfm",        spcmd2},
+	{"spcalc",      spcmdcalc},
 };
 
 /* tagging */
@@ -47,8 +49,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,         NULL,       0,              1,           -1 },
 	{ "Firefox",  NULL,         NULL,       1 << 8,         0,           -1 },
-	{ NULL,       "spterm",     NULL,       SPTAG(0),       1,           -1 },
-	{ NULL,       "spfm",       NULL,       SPTAG(1),       1,           -1 },
+	{ NULL,       NULL,         "spterm",   SPTAG(0),       1,           -1 },
+	{ NULL,       NULL,         "spfm",     SPTAG(1),       1,           -1 },
+	{ NULL,       NULL,         "spcalc",   SPTAG(2),       1,           -1 },
 };
 
 /* layout(s) */
@@ -108,6 +111,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY,                       XK_y,      togglescratch,  {.ui = 0 } },
 	{ MODKEY,                       XK_u,      togglescratch,  {.ui = 1 } },
+	{ MODKEY,                       XK_n,      togglescratch,  {.ui = 2 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
