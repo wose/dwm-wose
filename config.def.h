@@ -28,9 +28,9 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"alacritty", "-t", "spterm", "-d", "120", "40", NULL };
-const char *spcmd2[] = {"alacritty", "-t", "spfm", "-d", "120", "40", "-e", "ranger", NULL };
-const char *spcmdcalc[] = {"alacritty", "-t", "spcalc", "-d", "120", "40", "-e", "insect", NULL};
+const char *spcmd1[] = {"alacritty", "-t", "spterm", "--option", "window.dimensions.columns=120", "--option", "window.dimensions.rows=40", NULL };
+const char *spcmd2[] = {"alacritty", "-t", "spfm", "--option", "window.dimensions.columns=120", "--option", "window.dimensions.rows=40", "-e", "ranger", NULL };
+const char *spcmdcalc[] = {"alacritty", "-t", "spcalc", "--option", "window.dimensions.columns=120", "--option", "window.dimensions.rows=40", "-e", "insect", NULL};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
@@ -55,7 +55,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
